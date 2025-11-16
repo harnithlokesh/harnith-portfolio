@@ -1,0 +1,328 @@
+/* Import global font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #f7f8fc;
+  color: #111;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
+}
+
+.dark body {
+  background-color: #0b0f19;
+  color: #f0f0f0;
+}
+
+/* Sections */
+.section {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 6rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.max-text { max-width: 700px; }
+
+/* Grid layout */
+.grid-layout {
+  width: 100%;
+  max-width: 1100px;
+  display: grid;
+  gap: 2rem;
+}
+
+/* Card */
+.card {
+  padding: 1.5rem;
+  border-radius: 1rem;
+  background: rgba(255,255,255,0.4);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.08);
+}
+.dark .card {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.16);
+}
+
+/* 🌈 Gradient text */
+.gradient-text {
+  background: linear-gradient(90deg, #3b82f6, #a855f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* NAV LINKS */
+.nav-link {
+  padding: 8px 18px;
+  border-radius: 12px;
+  font-weight: 600;
+  transition: 0.25s ease;
+  color: inherit;
+  text-decoration: none;
+  display: inline-block;
+  position: relative;
+}
+
+.nav-link:hover {
+  background: rgba(59,130,246,0.10);
+  color: #3b82f6;
+}
+.dark .nav-link:hover {
+  background: rgba(255,255,255,0.10);
+  color: #a855f7;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 12px; right: 12px; bottom: 4px;
+  height: 2px; width: 0%;
+  background: linear-gradient(90deg,#3b82f6,#a855f7);
+  transition: width 0.25s ease;
+  border-radius: 10px;
+}
+.nav-link:hover::after { width: calc(100% - 24px); }
+
+/* SKILLS SECTION */
+.skill-btn {
+  padding: 0.6rem 1.3rem;
+  border-radius: 10px;
+  background: rgba(0,0,0,0.06);
+  color: inherit;
+  cursor: pointer;
+  transition: 0.25s ease;
+  position: relative;
+  font-weight: 600;
+  border: 1px solid rgba(0,0,0,0.1);
+}
+.dark .skill-btn {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.1);
+}
+.skill-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(100,100,255,0.25);
+}
+
+/* Skill preview bubble */
+.preview-box {
+  display: flex; gap: 6px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.9);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 50%; transform: translateX(-50%);
+  z-index: 5;
+}
+.dark .preview-box {
+  background: rgba(255,255,255,0.08);
+  box-shadow: 0 2px 8px rgba(255,255,255,0.12);
+}
+
+/* Dropdown full */
+.skill-drop {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 22px;
+  margin-top: 2rem;
+  animation: fadeIn 0.28s ease;
+}
+.skill-item {
+  display: flex; flex-direction: column; align-items: center;
+  opacity: 0.95;
+  transition: 0.25s ease;
+}
+.skill-item:hover { transform: translateY(-4px) scale(1.05); opacity: 1; }
+
+/* Fade animation (already used for skills) */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ───────────────────────────── */
+/* HORIZONTAL EXPERIENCE TIMELINE */
+/* ───────────────────────────── */
+
+.timeline-h {
+  display: flex;
+  gap: 4rem;
+  overflow-x: auto;
+  overflow-y: visible;
+  padding: 14rem 0 18rem; /* ⬅ HUGE SPACE for hover cards */
+  padding-left: 4rem; /* ensures first item is visible */
+  position: relative;
+  justify-content: flex-start; /* first aligned left */
+  width: 100%;
+  z-index: 3;
+  scroll-behavior: smooth;
+}
+
+.timeline-h::-webkit-scrollbar { height: 6px; }
+.timeline-h::-webkit-scrollbar-thumb {
+  background: rgba(100,100,255,0.35);
+  border-radius: 6px;
+}
+
+/* Backbone line */
+.timeline-h::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0; right: 0;
+  height: 3px;
+  background: rgba(255,255,255,0.25);
+}
+
+/* Node container */
+.t-node {
+  position: relative;
+  text-align: center;
+  min-width: 130px;
+}
+
+/* Positioning offset for alternating nodes */
+.t-node.top { transform: translateY(-24px); }
+.t-node.bottom { transform: translateY(24px); }
+
+/* Dot */
+.t-dot {
+  width: 18px; height: 18px;
+  margin: 0 auto;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #3b82f6, #a855f7);
+  box-shadow: 0 0 12px rgba(121,118,255,0.75);
+  cursor: pointer;
+}
+
+/* Date */
+.t-date {
+  margin-top: 6px;
+  font-size: 0.8rem;
+  opacity: 0.85;
+  white-space: nowrap;
+}
+
+/* Hover card */
+.t-card {
+  position: absolute;
+  width: 260px;
+  padding: 1rem 1.1rem;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.14);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.25);
+  animation: fadeScale 0.18s ease;
+  z-index: 50;
+  pointer-events: none;
+}
+
+.card-top {
+  bottom: 140%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.card-bottom {
+  top: 140%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@keyframes fadeScale {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* ───────────────────────────── */
+/* NEW: HERO / ABOUT / EFFECTS   */
+/* ───────────────────────────── */
+
+/* Glitch-ready base (subtle for now) */
+.glitch {
+  position: relative;
+  display: inline-block;
+}
+
+/* Rotating buzzword styling */
+.buzzword {
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  animation: buzzFade 1.2s ease-in-out;
+}
+
+@keyframes buzzFade {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* About highlight cards */
+.about-grid {
+  margin-top: 2.5rem;
+  display: grid;
+  gap: 1rem;
+  width: 100%;
+  max-width: 900px;
+}
+@media (min-width: 768px) {
+  .about-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+.about-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding: 0.9rem 1rem;
+  border-radius: 0.9rem;
+  background: rgba(255,255,255,0.8);
+  box-shadow: 0 8px 20px rgba(15,23,42,0.08);
+  text-align: left;
+  font-size: 0.9rem;
+}
+.dark .about-item {
+  background: rgba(15,23,42,0.85);
+  box-shadow: 0 8px 22px rgba(0,0,0,0.6);
+}
+.about-icon {
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+  color: #3b82f6;
+}
+.dark .about-icon {
+  color: #a855f7;
+}
+
+/* GitHub calendar card */
+.github-card {
+  width: 100%;
+  max-width: 900px;
+  overflow-x: auto;
+}
+
+/* Simple fade-in helpers using existing keyframes */
+.fade-in {
+  animation: fadeIn 0.8s ease-out both;
+}
+
+.fade-up {
+  animation: fadeIn 0.8s ease-out both;
+}
+
+/* Hide scrollbars globally */
+::-webkit-scrollbar { width: 0; }
